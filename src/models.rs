@@ -1,3 +1,5 @@
+use crate::schema::*;
+
 
 // GET
 #[derive(serde::Serialize)]
@@ -43,7 +45,8 @@ pub struct NewTableOrderItem {
 }
 
 // Static data
-#[derive(serde::Serialize, serde::Deserialize)]
+#[derive(Debug, serde::Serialize, serde::Deserialize, diesel_derive_enum::DbEnum)]
+#[DieselType = "Item_status_enum"]
 pub enum ItemStatus {
     Preparing,
     Served,

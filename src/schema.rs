@@ -1,4 +1,7 @@
 table! {
+    use diesel::sql_types::*;
+    use crate::models::Item_status_enum;
+
     items (item_id) {
         item_id -> Int8,
         item_name -> Varchar,
@@ -6,6 +9,9 @@ table! {
 }
 
 table! {
+    use diesel::sql_types::*;
+    use crate::models::Item_status_enum;
+
     table_order_items (id) {
         id -> Int8,
         item_id -> Int8,
@@ -17,6 +23,9 @@ table! {
 }
 
 table! {
+    use diesel::sql_types::*;
+    use crate::models::Item_status_enum;
+
     table_orders (order_id) {
         order_id -> Int8,
         table_id -> Int8,
@@ -25,6 +34,9 @@ table! {
 }
 
 table! {
+    use diesel::sql_types::*;
+    use crate::models::Item_status_enum;
+
     tables (table_id) {
         table_id -> Int8,
         is_free -> Bool,
