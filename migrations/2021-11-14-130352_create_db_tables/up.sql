@@ -44,7 +44,7 @@ CREATE TYPE ITEM_STATUS_ENUM AS ENUM ('Preparing', 'Served', 'Canceled');
 CREATE TABLE IF NOT EXISTS table_order_items (
     id BIGSERIAL PRIMARY KEY,
     item_id BIGSERIAL REFERENCES items(item_id) ON DELETE SET NULL,
-    table_id BIGSERIAL REFERENCES tables(table_id) ON DELETE SET NULL,
+    order_id BIGSERIAL REFERENCES table_orders(order_id) ON DELETE SET NULL,
     item_status ITEM_STATUS_ENUM NOT NULL DEFAULT 'Preparing',
     prep_time INTEGER DEFAULT 15 NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT (CURRENT_TIMESTAMP AT TIME ZONE 'utc')

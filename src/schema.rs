@@ -15,7 +15,7 @@ table! {
     table_order_items (id) {
         id -> Int8,
         item_id -> Int8,
-        table_id -> Int8,
+        order_id -> Int8,
         item_status -> Item_status_enum,
         prep_time -> Int4,
         created_at -> Timestamptz,
@@ -44,7 +44,7 @@ table! {
 }
 
 joinable!(table_order_items -> items (item_id));
-joinable!(table_order_items -> tables (table_id));
+joinable!(table_order_items -> table_orders (order_id));
 joinable!(table_orders -> tables (table_id));
 
 allow_tables_to_appear_in_same_query!(

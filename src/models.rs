@@ -1,3 +1,4 @@
+// bring all schema models to scope here
 use crate::schema::*;
 
 
@@ -28,7 +29,7 @@ pub struct NewTableOrder {
 pub struct TableOrderItems {
     pub id: i64,
     pub item_id: i64,
-    pub table_id: i64,
+    pub order_id: i64,
     pub item_status: ItemStatus,
     pub prep_time: i32,
     pub created_at: chrono::DateTime<chrono::Utc>,
@@ -38,7 +39,7 @@ pub struct TableOrderItems {
 #[derive(serde::Serialize)]
 pub struct NewTableOrderItem {
     pub item_id: i64,
-    pub table_id: i64,
+    pub order_id: i64,
     pub item_status: ItemStatus,
     pub prep_time: i32,
     pub created_at: chrono::DateTime<chrono::Utc>,
