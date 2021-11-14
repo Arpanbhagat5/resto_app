@@ -22,10 +22,10 @@ pub fn setup_logger() -> Result<(), fern::InitError> {
             ))
         })
         .level(log_level)
-        // log to stderr, not using external file for now
+        // log to stderr
         .chain(std::io::stderr());
 
-    // also log to file if one is provided via env
+    // also log to file, is provided via .env
     if let Ok(log_file) = env::var("LOG_FILE") {
         let log_file = fs::File::create(log_file)?;
         builder = builder.chain(log_file);

@@ -4,7 +4,6 @@
 pub struct Table {
     pub table_id: i64,
     pub is_free: bool,
-    pub order_id: i64,
 }
 
 // GET
@@ -25,6 +24,7 @@ pub struct NewTableOrder {
 // GET
 #[derive(serde::Serialize)]
 pub struct TableOrderItems {
+    pub id: i64,
     pub item_id: i64,
     pub table_id: i64,
     pub item_status: ItemStatus,
@@ -35,6 +35,7 @@ pub struct TableOrderItems {
 // POST
 #[derive(serde::Serialize)]
 pub struct NewTableOrderItem {
+    pub item_id: i64,
     pub table_id: i64,
     pub item_status: ItemStatus,
     pub prep_time: i32,
