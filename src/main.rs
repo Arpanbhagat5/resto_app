@@ -5,6 +5,7 @@ extern crate diesel;
 mod logger;
 mod models;
 mod schema;
+mod db;
 
 
 type StdErr = Box<dyn std::error::Error>;

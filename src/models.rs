@@ -10,7 +10,7 @@ pub struct Table {
 }
 
 // GET
-#[derive(serde::Serialize)]
+#[derive(serde::Serialize, diesel::Queryable)]
 pub struct TableOrders {
     pub order_id: i64,
     pub table_id: i64,
@@ -18,14 +18,15 @@ pub struct TableOrders {
 }
 
 // POST
-#[derive(serde::Serialize)]
+#[derive(serde::Serialize, diesel::Insertable)]
+#[table_name = "table_orders"]
 pub struct NewTableOrder {
     pub table_id: i64,
     pub created_at: chrono::DateTime<chrono::Utc>,
 }
 
 // GET
-#[derive(serde::Serialize)]
+#[derive(serde::Serialize, diesel::Queryable)]
 pub struct TableOrderItems {
     pub id: i64,
     pub item_id: i64,
@@ -36,7 +37,8 @@ pub struct TableOrderItems {
 }
 
 // POST
-#[derive(serde::Serialize)]
+#[derive(serde::Serialize, diesel::Insertable)]
+#[table_name = "table_order_items"]
 pub struct NewTableOrderItem {
     pub item_id: i64,
     pub order_id: i64,
