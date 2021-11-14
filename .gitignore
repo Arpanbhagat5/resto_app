@@ -1,1 +1,7 @@
 /target
+
+# .env
+.env
+
+# random notes
+notes.md
