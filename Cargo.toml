@@ -26,3 +26,9 @@ diesel = { version = "1.4", features = ["postgres", "chrono", "r2d2"] }
 
 # Enable enum in diesel using 3rd party lib integration
 diesel-derive-enum = { version = "1.1", features = ["postgres"] }
+
+# For routing use rocket
+# This works well at 0.5 with stable rust
+rocket = "0.4"
+# rthis equires nightly build, else a dependency "pear" fails to install
+rocket_contrib = "0.4"

@@ -18,11 +18,10 @@ pub struct TableOrders {
 }
 
 // POST
-#[derive(serde::Serialize, diesel::Insertable)]
+#[derive(Debug, serde::Deserialize, diesel::Insertable)]
 #[table_name = "table_orders"]
 pub struct NewTableOrder {
     pub table_id: i64,
-    pub created_at: chrono::DateTime<chrono::Utc>,
 }
 
 // GET
@@ -37,14 +36,13 @@ pub struct TableOrderItems {
 }
 
 // POST
-#[derive(serde::Serialize, diesel::Insertable)]
+#[derive(serde::Deserialize, diesel::Insertable)]
 #[table_name = "table_order_items"]
 pub struct NewTableOrderItem {
     pub item_id: i64,
     pub order_id: i64,
     pub item_status: ItemStatus,
     pub prep_time: i32,
-    pub created_at: chrono::DateTime<chrono::Utc>,
 }
 
 // Static data
