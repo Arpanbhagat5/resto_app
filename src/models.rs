@@ -3,8 +3,8 @@ use crate::schema::*;
 
 
 // GET
-#[derive(serde::Serialize)]
-pub struct Table {
+#[derive(Queryable, serde::Serialize)]
+pub struct Tables {
     pub table_id: i64,
     pub is_free: bool,
 }
@@ -18,7 +18,7 @@ pub struct TableOrders {
 }
 
 // POST
-#[derive(Debug, serde::Deserialize, diesel::Insertable)]
+#[derive(Clone, Debug, serde::Deserialize, diesel::Insertable)]
 #[table_name = "table_orders"]
 pub struct NewTableOrder {
     pub table_id: i64,
@@ -41,8 +41,8 @@ pub struct TableOrderItems {
 pub struct NewTableOrderItem {
     pub item_id: i64,
     pub order_id: i64,
-    pub item_status: ItemStatus,
     pub prep_time: i32,
+    // pub item_status: ItemStatus,
 }
 
 // Static data
