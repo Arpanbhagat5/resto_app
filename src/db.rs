@@ -29,9 +29,12 @@ pub struct BoolTableStatus {
 }
 
 #[derive(diesel::QueryableByName, Debug)]
-pub struct EnumTableOrderItemStatus {
-    #[sql_type = "Item_status_enum"]
-    pub item_status: ItemStatus
+pub struct TableOrderItemStatusSet {
+    #[sql_type = "BigInt"]
+    pub id: i64,
+
+    #[sql_type = "BigInt"]
+    pub item_status_id: i64
 }
 
 impl Db {
@@ -75,9 +78,9 @@ impl Db {
     }
 
 
-    pub fn get_table_order_item_status(&self, order_id: i64, item_id: i64 ) -> Result<Vec<EnumTableOrderItemStatus>, StdErr> {
+    pub fn get_table_order_item_status_id(&self, order_id: i64, item_id: i64 ) -> Result<Vec<TableOrderItemStatusSet>, StdErr> {
         let conn = self.pool.get()?;
-        let result = diesel::sql_query("SELECT item_status FROM table_order_items WHERE order_id=$1 and item_id=$2")
+        let result = diesel::sql_query("SELECT id, item_status_id FROM table_order_items WHERE order_id=$1 and item_id=$2")
             .bind::<BigInt, _>(order_id)
             .bind::<BigInt, _>(item_id)
             .load(&conn)?;
@@ -85,12 +88,11 @@ impl Db {
     }
 
 
-    pub fn cancel_item_from_table_order(&self, order_id: i64, item_id: i64) -> Result<TableOrderItems, StdErr> {
+    pub fn cancel_item_from_table_order(&self, id: i64) -> Result<TableOrderItems, StdErr> {
         let conn = self.pool.get()?;
         let result = diesel::update(table_order_items::table
-                .filter(table_order_items::order_id.eq(order_id))
-                .filter(table_order_items::item_id.eq(item_id)))
-            .set(table_order_items::item_status.eq(ItemStatus::Canceled))
+            .filter(table_order_items::id.eq(id)))
+            .set(table_order_items::item_status_id.eq(3)) // 3 for canceled
             .get_result(&conn)?;
         Ok(result)
     }
@@ -111,6 +113,16 @@ impl Db {
         Ok(result)
     }
 
+
+    pub fn get_one_table_order_item(&self, order_id: i64, item_id: i64) -> Result<Vec<TableOrderItems>, StdErr> {
+        let conn = self.pool.get()?;
+        let result = table_order_items::table
+            .filter(table_order_items::order_id.eq(order_id))
+            .filter(table_order_items::item_id.eq(item_id)) // 1 for preparing
+            .load(&conn)?;
+        Ok(result)
+    }
+
     pub fn get_all_table_order_items(&self, order_id: i64) -> Result<Vec<TableOrderItems>, StdErr> {
         let conn = self.pool.get()?;
         let result = table_order_items::table
@@ -123,7 +135,7 @@ impl Db {
         let conn = self.pool.get()?;
         let result = table_order_items::table
             .filter(table_order_items::order_id.eq(order_id))
-            .filter(table_order_items::item_status.eq(ItemStatus::Preparing)) // from models
+            .filter(table_order_items::item_status_id.eq(1)) // 1 for preparing
             .load(&conn)?;
         Ok(result)
     }

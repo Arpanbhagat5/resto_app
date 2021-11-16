@@ -30,7 +30,7 @@ pub struct TableOrderItems {
     pub id: i64,
     pub item_id: i64,
     pub order_id: i64,
-    pub item_status: ItemStatus,
+    pub item_status_id: i64,
     pub prep_time: i32,
     pub created_at: chrono::DateTime<chrono::Utc>,
 }
@@ -42,14 +42,5 @@ pub struct NewTableOrderItem {
     pub item_id: i64,
     pub order_id: i64,
     pub prep_time: i32,
-    // pub item_status: ItemStatus,
-}
-
-// Static data
-#[derive(Debug, serde::Serialize, serde::Deserialize, diesel_derive_enum::DbEnum)]
-#[DieselType = "Item_status_enum"]
-pub enum ItemStatus {
-    Preparing,
-    Served,
-    Canceled,
+    // pub item_status_id: i64,
 }

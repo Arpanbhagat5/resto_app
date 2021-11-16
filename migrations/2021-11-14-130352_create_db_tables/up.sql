@@ -35,17 +35,26 @@ VALUES
 
 CREATE TABLE IF NOT EXISTS table_orders (
     order_id BIGSERIAL PRIMARY KEY,
-    table_id BIGSERIAL REFERENCES tables(table_id) ON DELETE SET NULL,
+    table_id BIGINT REFERENCES tables(table_id) NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT (CURRENT_TIMESTAMP AT TIME ZONE 'utc')
 );
 
-CREATE TYPE ITEM_STATUS_ENUM AS ENUM ('Preparing', 'Served', 'Canceled');
+CREATE TABLE IF NOT EXISTS item_status (
+    status_id BIGSERIAL PRIMARY KEY,
+    status VARCHAR
+);
+
+INSERT INTO item_status
+(status)
+VALUES
+('Preparing'), ('Served'), ('Canceled');
+
 
 CREATE TABLE IF NOT EXISTS table_order_items (
     id BIGSERIAL PRIMARY KEY,
-    item_id BIGSERIAL REFERENCES items(item_id) ON DELETE SET NULL,
-    order_id BIGSERIAL REFERENCES table_orders(order_id) ON DELETE SET NULL,
-    item_status ITEM_STATUS_ENUM NOT NULL DEFAULT 'Preparing',
+    item_id BIGSERIAL REFERENCES items(item_id) NOT NULL,
+    order_id BIGINT REFERENCES table_orders(order_id) NOT NULL,
+    item_status_id BIGINT DEFAULT 1 REFERENCES item_status(status_id) NOT NULL,
     prep_time INTEGER DEFAULT 15 NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT (CURRENT_TIMESTAMP AT TIME ZONE 'utc')
 );
