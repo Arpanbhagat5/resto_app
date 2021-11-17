@@ -42,5 +42,4 @@ pub struct NewTableOrderItem {
     pub item_id: i64,
     pub order_id: i64,
     pub prep_time: i32,
-    // pub item_status_id: i64,
 }

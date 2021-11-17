@@ -92,7 +92,19 @@ impl Db {
         let conn = self.pool.get()?;
         let result = diesel::update(table_order_items::table
             .filter(table_order_items::id.eq(id)))
-            .set(table_order_items::item_status_id.eq(3)) // 3 for canceled
+            .set(table_order_items::item_status_id.eq(3)) // 3 for Canceled
+            .get_result(&conn)?;
+        Ok(result)
+    }
+
+    pub fn serve_item_from_table_order(&self, id: i64) -> Result<TableOrderItems, StdErr> {
+        let conn = self.pool.get()?;
+        let result = diesel::update(table_order_items::table
+            .filter(table_order_items::id.eq(id)))
+            .set((
+                table_order_items::item_status_id.eq(2),
+                table_order_items::prep_time.eq(0)
+            )) // 2 for Served
             .get_result(&conn)?;
         Ok(result)
     }

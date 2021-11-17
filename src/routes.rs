@@ -47,7 +47,7 @@ fn add_item_to_table_order(db: State<Db>, new_order_item: Json<NewTableOrderItem
 // }
 
 // Assumption: For same item ordered multiple times, will result in multiple entry response
-#[rocket::get("/table/<table_id>/item/<item_id>")]
+#[rocket::get("/table/<table_id>/get_item/<item_id>")]
 fn get_one_table_order_items(db: State<Db>, table_id: i64, item_id: i64) -> Result<Json<Vec<TableOrderItems>>, StdErr> {
     let result = db.get_order_id_from_table_id(table_id);
     let response = match result {
@@ -78,8 +78,7 @@ fn get_remaining_table_order_items(db: State<Db>, table_id: i64) -> Result<Json<
     db.get_remaining_table_order_items(response[0].order_id).map(Json)
 }
 
-// 
-#[rocket::get("/table/<table_id>/cancel/<item_id>")]
+#[rocket::post("/table/<table_id>/cancel_item/<item_id>")]
 fn cancel_item_from_table_order(db: State<Db>, table_id: i64, item_id: i64) -> Result<Json<Vec<TableOrderItems>>, StdErr> {
     let mut return_vec: Vec<TableOrderItems> = Vec::new();
     let result = db.get_order_id_from_table_id(table_id);
@@ -109,6 +108,36 @@ fn cancel_item_from_table_order(db: State<Db>, table_id: i64, item_id: i64) -> R
      Ok(Json(return_vec))
 }
 
+#[rocket::post("/table/<table_id>/serve_item/<item_id>")]
+fn serve_item_from_table_order(db: State<Db>, table_id: i64, item_id: i64) -> Result<Json<Vec<TableOrderItems>>, StdErr> {
+    let mut return_vec: Vec<TableOrderItems> = Vec::new();
+    let result = db.get_order_id_from_table_id(table_id);
+    let order_response = match result {
+        Ok(res) => res,
+        Err(err) => return Err(err),
+    };
+
+    let item_status = db.get_table_order_item_status_id(order_response[0].order_id, item_id);
+    let status_set_response = match item_status{
+        Ok(res) => res,
+        Err(err) => return Err(err),
+    };
+
+    for status_set in status_set_response.iter() {
+        if status_set.item_status_id == 1 { // 1 for preparing
+            let result = db.serve_item_from_table_order(status_set.id);
+            let curr_response = match result {
+                Ok(res) => res,
+                Err(err) => return Err(err),
+            };
+            return_vec.push(curr_response);
+        } else {
+            println!("Item cannot be served as it is either already served or canceled.");
+        }
+    }
+     Ok(Json(return_vec))
+}
+
 // Pub function to return API routes; 'api/' needs to be used in request paths
 pub fn api() -> Vec<rocket::Route> {
     rocket::routes![
@@ -118,5 +147,6 @@ pub fn api() -> Vec<rocket::Route> {
       get_all_table_order_items,
       get_remaining_table_order_items,
       cancel_item_from_table_order,
+      serve_item_from_table_order,
     ]
 }

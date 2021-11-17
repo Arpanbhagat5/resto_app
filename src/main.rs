@@ -1,4 +1,4 @@
-// For rocket macros we need the following, and this requires nightly rust
+// For rocket macros to work, we need the following, and this requires nightly rust
 #![feature(proc_macro_hygiene, decl_macro)]
 
 #[macro_use]
@@ -19,6 +19,7 @@ fn index() -> &'static str {
 }
 
 fn main() -> Result<(), StdErr> {
+    // couldn't handle this so need to set env var separately before running app locally
     // dotenv::dotenv()?;
     logger::setup_logger()?;
 
