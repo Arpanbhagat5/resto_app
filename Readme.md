@@ -7,7 +7,7 @@ Create a restaurant application which accepts menu items from various serving st
 
 # Structure of data
 Created a relational normalized DB for this application. Below is the ERD (might need some updates)
-![DB structure](Resto_app_db.png)
+![DB structure](/resto_app_db.png)
 </br></br>
 
 
