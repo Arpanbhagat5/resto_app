@@ -2,14 +2,17 @@
 use crate::schema::*;
 
 
-// GET
+/// Table entity in the restaurant
+/// Used in GET request
 #[derive(Queryable, serde::Serialize)]
 pub struct Tables {
     pub table_id: i64,
     pub is_free: bool,
 }
 
-// GET
+/// Table order entity for a table
+/// There would be only one per table at a time
+/// Used in GET request
 #[derive(serde::Serialize, diesel::Queryable)]
 pub struct TableOrders {
     pub order_id: i64,
@@ -17,14 +20,16 @@ pub struct TableOrders {
     pub created_at: chrono::DateTime<chrono::Utc>,
 }
 
-// POST
+/// Entity used for creating new orders for a table
+/// Used in POS request
 #[derive(Clone, Debug, serde::Deserialize, diesel::Insertable)]
 #[table_name = "table_orders"]
 pub struct NewTableOrder {
     pub table_id: i64,
 }
 
-// GET
+/// Represents one of the item of the order of a table
+/// Used in GET request
 #[derive(serde::Serialize, diesel::Queryable)]
 pub struct TableOrderItems {
     pub id: i64,
@@ -35,7 +40,8 @@ pub struct TableOrderItems {
     pub created_at: chrono::DateTime<chrono::Utc>,
 }
 
-// POST
+/// This is used for adding new items to an order for a table
+/// Used in POS request
 #[derive(serde::Deserialize, diesel::Insertable)]
 #[table_name = "table_order_items"]
 pub struct NewTableOrderItem {

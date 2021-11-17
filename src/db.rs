@@ -16,18 +16,24 @@ pub struct Db {
     pool: PgPool,
 }
 
+/// Used this type for handling direct SQL query results and pass to the calling function
+/// This represents the order id of a table
 #[derive(diesel::QueryableByName, Clone, Debug)]
 pub struct IntOrderID {
     #[sql_type = "BigInt"]
     pub order_id: i64
 }
 
+/// Used this type for handling direct SQL query results and pass to the calling function
+/// This represents the occupancy status of a table
 #[derive(diesel::QueryableByName, Debug)]
 pub struct BoolTableStatus {
     #[sql_type = "Bool"]
     pub is_free: bool
 }
 
+/// Used this type for handling direct SQL query results and pass to the calling function
+/// This represents the item preparation status of a table's order
 #[derive(diesel::QueryableByName, Debug)]
 pub struct TableOrderItemStatusSet {
     #[sql_type = "BigInt"]
@@ -38,6 +44,10 @@ pub struct TableOrderItemStatusSet {
 }
 
 impl Db {
+
+    /// Used r2d2 for establish DB connection pool
+    /// I tried the other way of creating connections on the go.
+    /// But soon realized it would create resource crunch so this was helpful 
     pub fn connect() -> Result<Self, StdErr> {
         let db_url = env::var("DATABASE_URL")?;
         let manager = r2d2::ConnectionManager::new(db_url);

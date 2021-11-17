@@ -19,8 +19,9 @@ fn index() -> &'static str {
 }
 
 fn main() -> Result<(), StdErr> {
-    // couldn't handle this so need to set env var separately before running app locally
-    // dotenv::dotenv()?;
+    /// In case of local run, need to set env var separately before running app locally
+    /// See readme for instructions
+    /// couldn't use this -> dotenv::dotenv()?;
     logger::setup_logger()?;
 
     let db = db::Db::connect()?;

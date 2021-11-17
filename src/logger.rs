@@ -3,6 +3,7 @@ use std::env;
 
 use log::{debug, error, info, trace, warn};
 
+/// This implementation is almost 100% copied from docs examples and some other references
 pub fn setup_logger() -> Result<(), fern::InitError> {
     // get log level from .env
     let log_level = env::var("LOG_LEVEL").unwrap_or("INFO".into());
@@ -10,7 +11,7 @@ pub fn setup_logger() -> Result<(), fern::InitError> {
         .parse::<log::LevelFilter>()
         .unwrap_or(log::LevelFilter::Info);
 
-    // Boiler plate from fern create docs
+    // Boiler plate from 'fern' create docs
     let mut builder = fern::Dispatch::new()
         .format(|out, message, record| {
             out.finish(format_args!(

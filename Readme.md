@@ -180,7 +180,7 @@ $ curl -X POST http://localhost:8000/api/table/2/serve_item/2
 
 ```
 
-</br></br>
+</br>
 
 # Tech stack
 ```
@@ -196,10 +196,10 @@ $ psql --version
 psql (PostgreSQL) 13.3
 
 ```
-</br></br>
+</br>
 
 # App setup
-</br></br>
+</br>
 
 ## OPTION 1: Build and run locally
 </br>
@@ -269,6 +269,7 @@ $ rustup default nightly-2021-11-13
 </br></br>
 
 ## OPTION 2: Run from Docker
+</br>
 
 ### Pre-requisite
 - Have Docker desktop client for Mac/Windows
@@ -285,10 +286,9 @@ $ curl localhost:8000/
 
 Hello, Resto App!
 ```
-</br></br>
+</br>
 
-
-## PS / TODO / DISCLAIMER
+## TODO / DISCLAIMER
 
 ### What I enjoyed most
 - The sight of seeing zero errors on `$ cargo check` at 2 AM
