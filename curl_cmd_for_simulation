@@ -1,0 +1,32 @@
+curl -X POST -d '{"table_id": 1}' http://localhost:8000/api//table/create_order & \
+curl -X POST -d '{"table_id": 2}' http://localhost:8000/api//table/create_order & \
+curl -X POST -d '{"table_id": 3}' http://localhost:8000/api//table/create_order & \
+curl -X POST -d '{"table_id": 4}' http://localhost:8000/api//table/create_order & \
+curl -X POST -d '{"table_id": 5}' http://localhost:8000/api//table/create_order &
+
+
+curl -X POST -d '{"item_id": 1, "order_id": 1, "prep_time": 10, "item_status_id": 1}' http://localhost:8000/api/table/add_item & \
+curl -X POST -d '{"item_id": 1, "order_id": 1, "prep_time": 5, "item_status_id": 1}' http://localhost:8000/api/table/add_item & \
+curl -X POST -d '{"item_id": 2, "order_id": 1, "prep_time": 15, "item_status_id": 1}' http://localhost:8000/api/table/add_item & \
+curl -X POST -d '{"item_id": 3, "order_id": 1, "prep_time": 10, "item_status_id": 1}' http://localhost:8000/api/table/add_item & \
+curl -X POST -d '{"item_id": 4, "order_id": 1, "prep_time": 15, "item_status_id": 1}' http://localhost:8000/api/table/add_item & \
+curl -X POST -d '{"item_id": 5, "order_id": 1, "prep_time": 5, "item_status_id": 1}' http://localhost:8000/api/table/add_item & \
+curl -X POST -d '{"item_id": 7, "order_id": 2, "prep_time": 10, "item_status_id": 1}' http://localhost:8000/api/table/add_item & \
+curl -X POST -d '{"item_id": 8, "order_id": 2, "prep_time": 15, "item_status_id": 1}' http://localhost:8000/api/table/add_item & \
+curl -X POST -d '{"item_id": 9, "order_id": 2, "prep_time": 5, "item_status_id": 1}' http://localhost:8000/api/table/add_item & \
+curl -X POST -d '{"item_id": 9, "order_id": 3, "prep_time": 5, "item_status_id": 1}' http://localhost:8000/api/table/add_item & \
+curl -X POST -d '{"item_id": 9, "order_id": 3, "prep_time": 5, "item_status_id": 1}' http://localhost:8000/api/table/add_item & \
+curl -X POST -d '{"item_id": 9, "order_id": 3, "prep_time": 10, "item_status_id": 1}' http://localhost:8000/api/table/add_item & \
+curl -X POST -d '{"item_id": 1, "order_id": 4, "prep_time": 15, "item_status_id": 1}' http://localhost:8000/api/table/add_item & \
+curl -X POST -d '{"item_id": 3, "order_id": 4, "prep_time": 10, "item_status_id": 1}' http://localhost:8000/api/table/add_item & \
+curl -X POST -d '{"item_id": 5, "order_id": 4, "prep_time": 10, "item_status_id": 1}' http://localhost:8000/api/table/add_item & \
+curl -X POST -d '{"item_id": 5, "order_id": 4, "prep_time": 15, "item_status_id": 1}' http://localhost:8000/api/table/add_item & \
+curl -X POST -d '{"item_id": 7, "order_id": 4, "prep_time": 15, "item_status_id": 1}' http://localhost:8000/api/table/add_item & \
+curl -X POST -d '{"item_id": 1, "order_id": 5, "prep_time": 5, "item_status_id": 1}' http://localhost:8000/api/table/add_item & \
+curl -X POST -d '{"item_id": 2, "order_id": 5, "prep_time": 10, "item_status_id": 1}' http://localhost:8000/api/table/add_item & \
+curl -X POST -d '{"item_id": 3, "order_id": 5, "prep_time": 10, "item_status_id": 1}' http://localhost:8000/api/table/add_item & \
+curl -X POST -d '{"item_id": 10, "order_id": 5, "prep_time": 5, "item_status_id": 1}' http://localhost:8000/api/table/add_item
+
+
+curl -X POST -d '{"item_id": 1, "table_id": 5}' http://localhost:8000/api/table/add_item
+
