@@ -1,4 +1,8 @@
 -- Your SQL goes here
+-- CREATE DATABASE resto_app;
+-- CREATE USER app_user WITH ENCRYPTED PASSWORD 'password';
+GRANT ALL PRIVILEGES ON DATABASE resto_app TO app_user;
+
 CREATE TABLE IF NOT EXISTS items (
     item_id BIGSERIAL PRIMARY KEY,
     item_name VARCHAR NOT NULL

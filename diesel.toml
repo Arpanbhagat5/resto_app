@@ -3,5 +3,3 @@
 
 [print_schema]
 file = "src/schema.rs"
-
-import_types = ["diesel::sql_types::*", "crate::models::Item_status_enum"]

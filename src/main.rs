@@ -19,7 +19,7 @@ fn index() -> &'static str {
 }
 
 fn main() -> Result<(), StdErr> {
-    dotenv::dotenv()?;
+    // dotenv::dotenv()?;
     logger::setup_logger()?;
 
     let db = db::Db::connect()?;
