@@ -277,7 +277,7 @@ $ rustup default nightly-2021-11-13
 - Have Docker desktop client for Mac/Windows
 
 ### Run the docker script from root of the directory
-`$ ./build_run_container.sh`
+`$ source ./build_run_container.sh`
 
 ### Check running docker containers
 `$ docker ps`
