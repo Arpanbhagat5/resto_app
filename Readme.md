@@ -59,6 +59,7 @@ $ curl -X POST http://localhost:8000/api/table/2/cancel_item/5
 # Multiple instance of same item
 $ curl -X POST http://localhost:8000/api/table/2/cancel_item/9
 
+# Remaining items of a table's order
 [{"id":21,"item_id":9,"order_id":3,"item_status_id":3,"prep_time":5,"created_at":"2021-11-17T10:35:10.389963Z"},
 {"id":25,"item_id":9,"order_id":3,"item_status_id":3,"prep_time":5,"created_at":"2021-11-17T10:35:10.431710Z"},
 {"id":26,"item_id":9,"order_id":3,"item_status_id":3,"prep_time":10,"created_at":"2021-11-17T10:35:10.434738Z"}]
@@ -138,20 +139,21 @@ curl -X POST -d '{"item_id": 10, "order_id": 5, "prep_time": 5, "item_status_id"
 [18] 39880
 [19] 39881
 [20] 39882
-{"id":23,"item_id":5,"order_id":1,"item_status_id":1,"prep_time":5,"created_at":"2021-11-17T10:35:10.387898Z"}{"id":17,"item_id":1,"order_id":1,"item_status_id":1,"prep_time":5,"created_at":"2021-11-17T10:35:10.388287Z"}{"id":19,"item_id":9,"order_id":2,"item_status_id":1,"prep_time":5,"created_at":"2021-11-17T10:35:10.389957Z"}[6]    39868 done       curl -X POST -d  http://localhost:8000/api/table/add_item
-{"id":24,"item_id":2,"order_id":1,"item_status_id":1,"prep_time":15,"created_at":"2021-11-17T10:35:10.388134Z"}{"id":16,"item_id":1,"order_id":1,"item_status_id":1,"prep_time":10,"created_at":"2021-11-17T10:35:10.387541Z"}[9]    39871 done       curl -X POST -d  http://localhost:8000/api/table/add_item
+{"id":23,"item_id":5,"order_id":1,"item_status_id":1,"prep_time":5,"created_at":"2021-11-17T10:35:10.387898Z"}{"id":17,"item_id":1,"order_id":1,"item_status_id":1,"prep_time":5,"created_at":"2021-11-17T10:35:10.388287Z"}{"id":19,"item_id":9,"order_id":2,"item_status_id":1,"prep_time":5,"created_at":"2021-11-17T10:35:10.389957Z"}
+[6]    39868 done       curl -X POST -d  http://localhost:8000/api/table/add_item
+{"id":24,"item_id":2,"order_id":1,"item_status_id":1,"prep_time":15,"created_at":"2021-11-17T10:35:10.388134Z"}{"id":16,"item_id":1,"order_id":1,"item_status_id":1,"prep_time":10,"created_at":"2021-11-17T10:35:10.387541Z"}
+[9]    39871 done       curl -X POST -d  http://localhost:8000/api/table/add_item
 [2]    39864 done       curl -X POST -d  http://localhost:8000/api/table/add_item
 [1]    39863 done       curl -X POST -d  http://localhost:8000/api/table/add_item
 [3]    39865 done       curl -X POST -d  http://localhost:8000/api/table/add_item
-{"id":21,"item_id":9,"order_id":3,"item_status_id":1,"prep_time":5,"created_at":"2021-11-17T10:35:10.389963Z"}{"id":15,"item_id":7,"order_id":2,"item_status_id":1,"prep_time":10,"created_at":"2021-11-17T10:35:10.387552Z"}{"id":25,"item_id":9,"order_id":3,"item_status_id":1,"prep_time":5,"created_at":"2021-11-17T10:35:10.431710Z"}[10]    39872 done       curl -X POST -d  http://localhost:8000/api/table/add_item
+{"id":21,"item_id":9,"order_id":3,"item_status_id":1,"prep_time":5,"created_at":"2021-11-17T10:35:10.389963Z"}{"id":15,"item_id":7,"order_id":2,"item_status_id":1,"prep_time":10,"created_at":"2021-11-17T10:35:10.387552Z"}{"id":25,"item_id":9,"order_id":3,"item_status_id":1,"prep_time":5,"created_at":"2021-11-17T10:35:10.431710Z"[10]    39872 done       curl -X POST -d  http://localhost:8000/api/table/add_item
 [7]    39869 done       curl -X POST -d  http://localhost:8000/api/table/add_item
 [11]    39873 done       curl -X POST -d  http://localhost:8000/api/table/add_item
-{"id":22,"item_id":4,"order_id":1,"item_status_id":1,"prep_time":15,"created_at":"2021-11-17T10:35:10.388775Z"}{"id":18,"item_id":8,"order_id":2,"item_status_id":1,"prep_time":15,"created_at":"2021-11-17T10:35:10.388787Z"}{"id":20,"item_id":3,"order_id":1,"item_status_id":1,"prep_time":10,"created_at":"2021-11-17T10:35:10.388060Z"}[8]    39870 done       curl -X POST -d  http://localhost:8000/api/table/add_item
+{"id":22,"item_id":4,"order_id":1,"item_status_id":1,"prep_time":15,"created_at":"2021-11-17T10:35:10.388775Z"}{"id":18,"item_id":8,"order_id":2,"item_status_id":1,"prep_time":15,"created_at":"2021-11-17T10:35:10.388787Z"}{"id":20,"item_id":3,"order_id":1,"item_status_id":1,"prep_time":10,"created_at":"2021-11-17T10:35:10.388060Z"[8]    39870 done       curl -X POST -d  http://localhost:8000/api/table/add_item
 [5]    39867 done       curl -X POST -d  http://localhost:8000/api/table/add_item
 [4]    39866 done       curl -X POST -d  http://localhost:8000/api/table/add_item
 {"id":32,"item_id":7,"order_id":4,"item_status_id":1,"prep_time":15,"created_at":"2021-11-17T10:35:10.436101Z"}{"id":27,"item_id":3,"order_id":4,"item_status_id":1,"prep_time":10,"created_at":"2021-11-17T10:35:10.434808Z"}
-{"id":26,"item_id":9,"order_id":3,"item_status_id":1,"prep_time":10,"created_at":"2021-11-17T10:35:10.434738Z"}{"id":28,"item_id":5,"order_id":4,"item_status_id":1,"prep_time":15,"created_at":"2021-11-17T10:35:10.435411Z"}{"id":29,"item_id":1,"order_id":4,"item_status_id":1,"prep_time":15,"created_at":"2021-11-17T10:35:10.435750Z"}
-[17]    39879 done       curl -X POST -d  http://localhost:8000/api/table/add_item
+{"id":26,"item_id":9,"order_id":3,"item_status_id":1,"prep_time":10,"created_at":"2021-11-17T10:35:10.434738Z"}{"id":28,"item_id":5,"order_id":4,"item_status_id":1,"prep_time":15,"created_at":"2021-11-17T10:35:10.435411Z"}{"id":29,"item_id":1,"order_id":4,"item_status_id":1,"prep_time":15,"created_at":"2021-11-17T10:35:10.435750Z"}[17]    39879 done       curl -X POST -d  http://localhost:8000/api/table/add_item
 [14]    39876 done       curl -X POST -d  http://localhost:8000/api/table/add_item
 [12]    39874 done       curl -X POST -d  http://localhost:8000/api/table/add_item
 {"id":30,"item_id":5,"order_id":4,"item_status_id":1,"prep_time":10,"created_at":"2021-11-17T10:35:10.435985Z"}
@@ -293,23 +295,24 @@ Hello, Resto App!
 ### What I enjoyed most
 - The sight of seeing zero errors on `$ cargo check` at 2 AM
 - Finally, getting hang of the type management of Rust
+- Being able to separate out the implementation of API, backend and Db layers
 - Knowing that Rust makes sure the code can not break for so many cases that would easily happen for a different language
 - Traits that did wonders
-- Custom vectors (IDK the correct name maybe) that become the return value for DB functions that run SQl queries directly.
+- Custom vectors (IDK the correct name maybe) that become the return value for DB functions that run SQL queries directly
 
 ### Where I lost a lot of time
 - Declarative types of Rust (first attempt and beginning phase)
-- Lots and lots of pain experienced in going back and forth to undersatnd the type mismatches and other errors.
+- Lots and lots of going back and forth to undersatnd the type mismatches and other errors
 - Having to restart the development for the second time, only after realizing I need to refactor a lot on [my first attempt](https://github.com/Arpanbhagat5/resto-api)
-- The fact that I could have done much better, if I knew this language a bit more and not a very tired mind
+- The fact that I could have done much better, if I knew this language a bit more and didn't have a very tired soul
 
 ### Assumption that backfired
-- I took a not so well thought assumption that someone could order multiple instances of same thing.
-    - this basically makes the cancel and serve(delete) requests weird.
-    - I had to cancel/serve all instance at once.
+- I took a not so well thought assumption that someone could order multiple instances of same thing
+    - this basically makes the cancel and serve(delete) requests slightly inaccurate
+    - I had to cancel/serve all instance at once
 
 ### Todo
-- Implement timer logic for couting down prep_time and change status of item from preparing -> served
+- Implement timer logic for counting down `prep_time` and change status of item from `preparing` -> `served`
    - Handle cancelation request based on current status: Handle/drop running thread in case of cancelation
 
 ### No tests :(
@@ -317,7 +320,7 @@ Hello, Resto App!
 
 ### Exceptions not handled for corner cases
 - Instead of creating a proper JSON reponse, I returned the objects (vector of objects)
-- In case of non-existent vales from DB, the server gives 5xx error while printing to the stdout the reason
-  - This basically doesnt work well with corner cases or when exceptions occur.
+- In case of non-existent values from DB, the server gives 5xx error while printing to the stdout the reason
+  - This basically doesnt work well with corner cases or when exceptions occur
   - For example, if you add multiple items, and one of the items in not in the item list, the server will give back a 5xx error, while printing to the stdout that the object doent exist.
-  - Ideally, I would handle this with proper Json response, per item (in case of multi object query)
+  - Ideally, I would handle this by implementing a generic Json response struct
