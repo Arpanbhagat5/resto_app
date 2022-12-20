@@ -315,9 +315,6 @@ Hello, Resto App!
 - Implement timer logic for counting down `prep_time` and change status of item from `preparing` -> `served`
    - Handle cancelation request based on current status: Handle/drop running thread in case of cancelation
 
-### No tests :(
-- I could not add tests
-
 ### Exceptions not handled for corner cases
 - Instead of creating a proper JSON reponse, I returned the objects (vector of objects)
 - In case of non-existent values from DB, the server gives 5xx error while printing to the stdout the reason
